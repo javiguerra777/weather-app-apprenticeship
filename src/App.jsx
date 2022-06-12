@@ -1,18 +1,25 @@
-import React, { useState } from 'react';
-import weatherdata from './weatherBit-sample-data.json';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import Card from './components/Card';
 import Weather from './components/Weather';
 import Form from './components/Form';
+import getLocation, { getWeatherData } from './utils/api';
 
 function App() {
   const [location, setLocation] = useState('Stockton, CA');
   const [newLocation, setNewLocation] = useState('');
-  const [weather] = useState(weatherdata.data);
+  const [weather, setWeather] = useState({});
   const [oneweather, setOneWeather] = useState({});
   const [displayCard, setDisplayCard] = useState(false);
+  useEffect(() => {
+    getLocation(location).then((res) => {
+      getWeatherData(res.data[0].lat, res.data[0].lon).then(
+        (response) => setWeather(response.data),
+      );
+    });
+  }, [location]);
   const showInfo = (id) => {
-    setOneWeather(weather[id]);
+    setOneWeather(weather.daily[id]);
     setDisplayCard(true);
   };
   const handleLocationChange = (e) => {
@@ -20,7 +27,6 @@ function App() {
     setLocation(newLocation);
     setNewLocation('');
   };
-  // console.log(weather);
   return (
     <div className="container">
       <Form

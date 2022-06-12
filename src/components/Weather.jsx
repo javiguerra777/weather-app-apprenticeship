@@ -12,7 +12,7 @@ function Weather({ weather, showInfo }) {
     <div>
       <h1>Weather data for this week:</h1>
       <div className="d-flex">
-        {weather.map((data, index) => {
+        {weather.daily?.map((data, index) => {
           return (
             <Weathercard
               className="card"
@@ -22,9 +22,9 @@ function Weather({ weather, showInfo }) {
               key={nanoid()}
             >
               <p>
-                Actual Temp: {data.temp} <br />
-                Max temp: {data.max_temp} <br />
-                Min temp: {data.min_temp}
+                Day Temp: {data.temp.day} celsius <br />
+                Max temp: {data.temp.max} celsius <br />
+                Min temp: {data.temp.min} celsius
               </p>
             </Weathercard>
           );
