@@ -1,43 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './App.css';
-import Card from './components/Card';
-import Weather from './components/Weather';
-import Form from './components/Form';
-import getLocation, { getWeatherData } from './utils/api';
+import { Routes, Route } from 'react-router-dom';
+import Layout from './pages/Layout';
+import Main from './pages/Main';
+import NotFound from './pages/NotFound';
 
 function App() {
-  const [location, setLocation] = useState('Stockton, CA');
-  const [newLocation, setNewLocation] = useState('');
-  const [weather, setWeather] = useState({});
-  const [oneweather, setOneWeather] = useState({});
-  const [displayCard, setDisplayCard] = useState(false);
-  useEffect(() => {
-    getLocation(location).then((res) => {
-      getWeatherData(res.data[0].lat, res.data[0].lon).then(
-        (response) => setWeather(response.data),
-      );
-    });
-  }, [location]);
-  const showInfo = (id) => {
-    setOneWeather(weather.daily[id]);
-    setDisplayCard(true);
-  };
-  const handleLocationChange = (e) => {
-    e.preventDefault();
-    setLocation(newLocation);
-    setNewLocation('');
-  };
   return (
-    <div className="container">
-      <Form
-        location={location}
-        newLocation={newLocation}
-        setNewLocation={setNewLocation}
-        handleLocationChange={handleLocationChange}
-      />
-      <Weather weather={weather} showInfo={showInfo} />
-      {displayCard && <Card oneweather={oneweather} />}
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Main />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
   );
 }
 
