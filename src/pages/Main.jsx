@@ -1,15 +1,16 @@
 /* eslint-disable import/no-named-as-default-member */
 /* eslint-disable import/no-named-as-default */
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import '../App.css';
 import Card from '../components/Card';
 import Weather from '../components/Weather';
 import Form from '../components/Form';
 import getLocation, { getWeatherData } from '../utils/api';
+import ErrorContext from '../utils/context';
 
 function Main() {
   const symbol = '℉';
-  const [error, setError] = useState(false);
+  const { error, setError } = useContext(ErrorContext);
   const [location, setLocation] = useState('Stockton, CA');
   const [newLocation, setNewLocation] = useState('');
   const [weather, setWeather] = useState({});
@@ -34,7 +35,7 @@ function Main() {
       );
       return true;
     });
-  }, [location]);
+  }, [location, setError]);
 
   const showInfo = (id) => {
     setOneWeather(weather.daily[id]);

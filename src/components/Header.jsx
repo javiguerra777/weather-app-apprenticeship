@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function Header() {
   return (
     <div>
-      <Link to="/"> Click here to go home</Link>
+      = <Link to="/"> Click here to go home</Link>
     </div>
   );
 }
