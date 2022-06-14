@@ -2,51 +2,54 @@ import React from 'react';
 import Proptypes from 'prop-types';
 
 function Form({
-  location,
   newLocation,
   setNewLocation,
   handleLocationChange,
+  displayLoc,
 }) {
   let disabled = false;
   if (!newLocation) {
     disabled = true;
   }
   return (
-    <div>
-      <header>
+    <div className="header">
+      <div>
+        <h4>Weather info for {displayLoc}</h4>
+      </div>
+      <div className="form">
         <form onSubmit={handleLocationChange}>
-          <h1>
-            You can search for location based on City, State, or Zip
-          </h1>
           <label htmlFor="search">
-            Change Location:
             <input
+              id="search"
               name="search"
-              placeholder="City: Stockton, State: CA, Zip, 95204"
+              placeholder="Disneyworld OR 95204 OR Stockton, CA"
               value={newLocation}
               onChange={(e) => setNewLocation(e.target.value)}
             />
           </label>
-          <button type="submit" disabled={disabled}>
+          <button
+            className="btn-main"
+            type="submit"
+            disabled={disabled}
+          >
             Search
           </button>
         </form>
-      </header>
-      <h2>Weather for {location}</h2>
+      </div>
     </div>
   );
 }
 
 Form.defaultProps = {
-  location: '',
   newLocation: '',
   setNewLocation: () => {},
   handleLocationChange: () => {},
+  displayLoc: '',
 };
 Form.propTypes = {
-  location: Proptypes.string,
   newLocation: Proptypes.string,
   setNewLocation: Proptypes.func,
   handleLocationChange: Proptypes.func,
+  displayLoc: Proptypes.string,
 };
 export default Form;

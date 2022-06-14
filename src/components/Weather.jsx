@@ -2,29 +2,46 @@ import React from 'react';
 import Proptypes from 'prop-types';
 import { nanoid } from 'nanoid';
 import styled from 'styled-components';
+import { convertUnix } from '../utils/functions';
 
 const Weathercard = styled.div`
-  background-color: gray;
+  background-color: white;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
-function Weather({ weather, showInfo }) {
+function Weather({ weather, showInfo, symbol, activeDiv }) {
   return (
     <div>
-      <h1>Weather data for this week:</h1>
       <div className="d-flex">
         {weather.daily?.map((data, index) => {
           return (
             <Weathercard
-              className="card"
+              className={index === activeDiv ? 'active-card' : 'card'}
               onClick={() => showInfo(index)}
               role="button"
               tabIndex={0}
               key={nanoid()}
             >
+              <div
+                className={index === activeDiv ? 'active' : 'head'}
+              >
+                <h4>{convertUnix(data.dt)}</h4>
+              </div>
+              <h3>
+                {data.temp.day}
+                {symbol}
+              </h3>
+              <img
+                src={`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
+                alt={data.weather[0].main}
+              />
               <p>
-                Day Temp: {data.temp.day} celsius <br />
-                Max temp: {data.temp.max} celsius <br />
-                Min temp: {data.temp.min} celsius
+                High: {data.temp.max}
+                {symbol} <br />
+                Low: {data.temp.min}
+                {symbol}
               </p>
             </Weathercard>
           );
@@ -36,9 +53,13 @@ function Weather({ weather, showInfo }) {
 Weather.defaultProps = {
   weather: {},
   showInfo: () => {},
+  symbol: '',
+  activeDiv: -1,
 };
 Weather.propTypes = {
   weather: Proptypes.instanceOf(Object),
   showInfo: Proptypes.func,
+  symbol: Proptypes.string,
+  activeDiv: Proptypes.number,
 };
 export default Weather;

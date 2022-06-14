@@ -8,6 +8,6 @@ export default function getLocation(city) {
 
 export function getWeatherData(lat, lon) {
   return axios.get(
-    `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`,
+    `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`,
   );
 }

@@ -1,7 +1,6 @@
 /* eslint-disable max-len */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Header from './components/Header';
 // # Error boundaries are React components that catch JavaScript errors anywhere in their child component tree, log those errors, and display a fallback UI instead of the component tree that crashed. Error boundaries catch errors during rendering, in lifecycle methods, and in component constructors full the whole tree below them.
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -16,6 +15,7 @@ class ErrorBoundary extends Component {
 
   // ? CAN trigger side effects; commonly used to log out any errors
   componentDidCatch(error, errorInfo) {
+    // eslint-disable-next-line no-console
     console.log(error, errorInfo);
   }
 
@@ -27,8 +27,12 @@ class ErrorBoundary extends Component {
       return (
         <>
           <h1>An error has occurred in a child component!</h1>
-          {error.message && <p>{error.message}</p>}
-          <Header />
+          {error.message && (
+            <p>
+              {error.message} Try refreshing the page, the error
+              occurred because you attempted an invalid search option
+            </p>
+          )}
         </>
       );
     }
