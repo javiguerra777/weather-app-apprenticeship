@@ -10,6 +10,8 @@ const Weathercard = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 10px;
+  width: 115px;
 `;
 function Weather({ weather, showInfo, symbol, activeDiv }) {
   return (
