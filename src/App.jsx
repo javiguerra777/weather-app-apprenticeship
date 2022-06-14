@@ -13,6 +13,9 @@ function App() {
   const [displayCard, setDisplayCard] = useState(false);
   useEffect(() => {
     getLocation(location).then((res) => {
+      if (res.data.length === 0) {
+        throw Error('Invalid search option');
+      }
       getWeatherData(res.data[0].lat, res.data[0].lon).then(
         (response) => setWeather(response.data),
       );
