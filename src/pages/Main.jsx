@@ -9,6 +9,7 @@ import getLocation, { getWeatherData } from '../utils/api';
 
 function Main() {
   const symbol = '℉';
+  const [error, setError] = useState(false);
   const [location, setLocation] = useState('Stockton, CA');
   const [newLocation, setNewLocation] = useState('');
   const [weather, setWeather] = useState({});
@@ -16,15 +17,22 @@ function Main() {
   const [displayCard, setDisplayCard] = useState(false);
   const [displayLoc, setDisplayLoc] = useState('');
   const [activeDiv, setActiveDiv] = useState(-1);
+  if (error) {
+    throw Error(
+      `Invalid search option you searched for ${location} which is an invalid location`,
+    );
+  }
   useEffect(() => {
     getLocation(location).then((res) => {
       if (res.data.length === 0) {
-        throw Error('Invalid Search Term, no results found');
+        setError(true);
+        return false;
       }
       setDisplayLoc(res.data[0].display_name);
       getWeatherData(res.data[0].lat, res.data[0].lon).then(
         (response) => setWeather(response.data),
       );
+      return true;
     });
   }, [location]);
 
