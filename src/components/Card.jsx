@@ -1,6 +1,6 @@
 import React from 'react';
 import Proptypes from 'prop-types';
-import { convertUnix } from '../utils/functions';
+import convertUnix from '../utils/functions';
 
 function Card({ oneweather, symbol }) {
   return (

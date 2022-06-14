@@ -36,24 +36,32 @@ function Main() {
     setActiveDiv(-1);
   };
   return (
-    <div className="container">
+    <div className="container" role="main">
       <Form
         location={location}
         newLocation={newLocation}
         setNewLocation={setNewLocation}
         handleLocationChange={handleLocationChange}
         displayLoc={displayLoc}
+        role="form"
       />
       <Weather
         weather={weather}
         showInfo={showInfo}
         symbol={symbol}
         activeDiv={activeDiv}
+        data-testid="weather-component"
       />
       {displayCard ? (
-        <Card oneweather={oneweather} symbol={symbol} />
+        <Card
+          oneweather={oneweather}
+          symbol={symbol}
+          data-testid="card-component"
+        />
       ) : (
-        <h3>Click on a day above to view details</h3>
+        <h3 data-testid="day-message">
+          Click on a day above to view details
+        </h3>
       )}
     </div>
   );

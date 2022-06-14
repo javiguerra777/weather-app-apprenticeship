@@ -2,7 +2,7 @@ import React from 'react';
 import Proptypes from 'prop-types';
 // import { nanoid } from 'nanoid';
 import styled from 'styled-components';
-import { convertUnix } from '../utils/functions';
+import convertUnix from '../utils/functions';
 
 const Weathercard = styled.div`
   background-color: white;
