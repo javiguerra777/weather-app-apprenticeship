@@ -1,10 +1,14 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import Main from './Main';
+import { BrowserRouter } from 'react-router-dom';
+import App from '../App';
 
 test('to check if proper message is displayed and card component is not displayed', async () => {
-  render(<Main />);
+  render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>,
+  );
   const container = screen.getByRole('main');
   const form = await screen.getByTestId('form-component');
   const weather = await screen.getByTestId('weather-component');
@@ -16,16 +20,4 @@ test('to check if proper message is displayed and card component is not displaye
   expect(weather).toBeInTheDocument();
   expect(card).not.toBeInTheDocument();
   expect(message).toBeInTheDocument();
-});
-
-test('check if card is displayed after user event', async () => {
-  render(<Main />);
-  const card = await screen.queryByTestId('card-component');
-  const message = await screen.getByTestId('day-message');
-  const weatherCard = await screen.queryByTestId('weathercard-div');
-
-  expect(weatherCard).toBeInTheDocument();
-  userEvent.click(weatherCard);
-  expect(card).toBeInTheDocument();
-  expect(message).not.toBeInTheDocument();
 });

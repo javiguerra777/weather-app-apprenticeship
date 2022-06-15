@@ -1,37 +1,42 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Form from './Form';
+import { BrowserRouter } from 'react-router-dom';
+import App from '../App';
 
 test('to see if proper information is showing on page', async () => {
-  render(<Form />);
+  render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>,
+  );
   const location = await screen.getByTestId('location');
   const button = await screen.getByRole('button', {
     text: /search/i,
   });
-  const searchRef = await screen.getByRole('spinbutton');
+  const searchRef = await screen.getByTestId('input');
 
   expect(location).toBeInTheDocument();
   expect(button).toBeInTheDocument();
   expect(searchRef).toBeInTheDocument();
 
-  expect(location).toHaveTextContent(
-    'Stockton, San Joaquin County, California, United States',
-  );
   expect(button).toHaveAttribute('type', 'submit');
 });
 
 test('check if button is disabled before entering value', async () => {
-  render(<Form />);
+  render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>,
+  );
   const button = await screen.getByRole('button', {
     text: /search/i,
   });
-  const searchRef = await screen.getByRole('spinbutton');
-
+  const searchRef = await screen.getByTestId('input');
   expect(button).toBeDisabled();
 
-  userEvent.type(searchRef, 'San Diego');
-  expect(button).tobeEnabled();
+  await userEvent.type(searchRef, 'San Diego');
+  expect(button).not.toBeDisabled();
 
   userEvent.clear(searchRef);
   expect(button).toBeDisabled();

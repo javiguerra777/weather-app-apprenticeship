@@ -8,17 +8,10 @@ function Form({
   displayLoc,
   testid,
 }) {
-  let disabled = false;
-  if (!newLocation) {
-    disabled = true;
-  }
   return (
     <div className="header" data-testid={testid}>
       <div className="city-desc">
-        <h4>
-          Weather info for{' '}
-          <span data-testid="location">{displayLoc}</span>
-        </h4>
+        <h4 data-testid="location">Weather info for {displayLoc}</h4>
       </div>
       <div className="form">
         <form onSubmit={handleLocationChange}>
@@ -29,12 +22,13 @@ function Form({
               placeholder="Disneyworld OR 95204 OR Stockton, CA"
               value={newLocation}
               onChange={(e) => setNewLocation(e.target.value)}
+              data-testid="input"
             />
           </label>
           <button
             className="btn-main"
             type="submit"
-            disabled={disabled}
+            disabled={newLocation === ''}
           >
             Search
           </button>

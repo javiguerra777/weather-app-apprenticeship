@@ -28,7 +28,7 @@ function Weather({ weather, showInfo, symbol, activeDiv, testid }) {
                 role="button"
                 tabIndex={0}
                 key={Math.floor(Math.random() * 100000000)}
-                data-testid="weathercard-div"
+                data-testid={`weathercard${index}`}
               >
                 <div
                   className={index === activeDiv ? 'active' : 'head'}

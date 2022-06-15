@@ -36,7 +36,6 @@ function Main() {
       return true;
     });
   }, [location, setError]);
-
   const showInfo = (id) => {
     setOneWeather(weather.daily[id]);
     setDisplayCard(true);
