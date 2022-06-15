@@ -59,6 +59,9 @@
 .card {
   border: lightgray 1px solid;
 }
+.city-desc {
+  width: 60%;
+}
 #image {
   width: 10%;
   height: 30%;
@@ -66,12 +69,20 @@
 #search {
   width: 20em;
 }
+@media screen and (max-width: 500px){
+  #search {
+    width: 70%;
+  }
+}
 @media screen and (max-width: 1000px){
   .active-card {
     margin-right: 15px;
   }
   .card {
     margin-right: 15px;
+  }
+  .city-desc {
+    width: 30%
   }
   .d-flex{
     justify-content: start;

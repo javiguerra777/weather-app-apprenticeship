@@ -28,10 +28,12 @@ class ErrorBoundary extends Component {
         <>
           <h1>An error has occurred in a child component!</h1>
           {error.message && (
-            <p>
-              {error.message} Try refreshing the page, the error
-              occurred because you attempted an invalid search option
-            </p>
+            <div>
+              <p>
+                {error.message} Refresh the page and enter a valid
+                search option
+              </p>
+            </div>
           )}
         </>
       );

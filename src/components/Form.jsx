@@ -6,15 +6,19 @@ function Form({
   setNewLocation,
   handleLocationChange,
   displayLoc,
+  testid,
 }) {
   let disabled = false;
   if (!newLocation) {
     disabled = true;
   }
   return (
-    <div className="header">
-      <div>
-        <h4>Weather info for {displayLoc}</h4>
+    <div className="header" data-testid={testid}>
+      <div className="city-desc">
+        <h4>
+          Weather info for{' '}
+          <span data-testid="location">{displayLoc}</span>
+        </h4>
       </div>
       <div className="form">
         <form onSubmit={handleLocationChange}>
@@ -45,11 +49,13 @@ Form.defaultProps = {
   setNewLocation: () => {},
   handleLocationChange: () => {},
   displayLoc: '',
+  testid: '',
 };
 Form.propTypes = {
   newLocation: Proptypes.string,
   setNewLocation: Proptypes.func,
   handleLocationChange: Proptypes.func,
   displayLoc: Proptypes.string,
+  testid: Proptypes.string,
 };
 export default Form;
