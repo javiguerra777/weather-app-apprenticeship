@@ -10,9 +10,9 @@ describe('testing geocoder api location', () => {
 
 describe('test weather api', () => {
   test('using weather api function', async () => {
-    const lat = 37.9577016;
+    const lati = 37.9577016;
     const lon = -121.2907796;
-    const returnVal = await getWeatherData(lat, lon);
+    const returnVal = await getWeatherData(lati, lon);
     expect(returnVal.data.current.temp).toEqual(82.99);
   });
 });
