@@ -1,13 +1,14 @@
 import React from 'react';
 import Proptypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  changeLocation,
+  changeNewLocation,
+} from '../store/locationSlice';
 
-function Form({
-  newLocation,
-  setNewLocation,
-  handleLocationChange,
-  displayLoc,
-  testid,
-}) {
+function Form({ handleLocationChange, displayLoc, testid }) {
+  const dispatch = useDispatch();
+  const newLocation = useSelector((state) => state.location.newValue);
   return (
     <div className="header" data-testid={testid}>
       <div className="city-desc">
@@ -21,7 +22,9 @@ function Form({
               name="search"
               placeholder="Disneyworld OR 95204 OR Stockton, CA"
               value={newLocation}
-              onChange={(e) => setNewLocation(e.target.value)}
+              onChange={(e) =>
+                dispatch(changeNewLocation(e.target.value))
+              }
               data-testid="input"
             />
           </label>
@@ -29,6 +32,7 @@ function Form({
             className="btn-main"
             type="submit"
             disabled={newLocation === ''}
+            onClick={() => dispatch(changeLocation(newLocation))}
           >
             Search
           </button>
@@ -39,15 +43,11 @@ function Form({
 }
 
 Form.defaultProps = {
-  newLocation: '',
-  setNewLocation: () => {},
   handleLocationChange: () => {},
   displayLoc: '',
   testid: '',
 };
 Form.propTypes = {
-  newLocation: Proptypes.string,
-  setNewLocation: Proptypes.func,
   handleLocationChange: Proptypes.func,
   displayLoc: Proptypes.string,
   testid: Proptypes.string,
