@@ -1,20 +1,90 @@
+.active {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  background-color: #0A8D7E;
+  color: white;
+}
+.btn-main {
+  background-color: #0A8D7E;
+  color: white;
+  cursor: pointer;
+}
+.btn-main:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
 .card:hover {
-  background-color: lightcyan;
+  border: #0A8D7E 2px solid;
 }
 .container {
-  background-color: antiquewhite;
   height: 100vh;
-  width: 100vw;
+  width: 95vw;
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
 }
 .d-flex {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
-
+.form{
+  padding-top: 20px;
+}
+.head {
+  display: flex;
+  background-color: lightgrey;
+  width: 100%;
+  justify-content: center;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
 .weather-card {
-  background-color: aliceblue;
-  width: 50%;
-  align-self: center;
+  background-color: white;
+  border: 2px solid #0A8D7E;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+.active-card {
+  border: #0A8D7E 2px solid;
+}
+.card {
+  border: lightgray 1px solid;
+}
+.city-desc {
+  width: 60%;
+}
+#image {
+  width: 10%;
+  height: 30%;
+}
+#search {
+  width: 20em;
+}
+@media screen and (max-width: 500px){
+  #search {
+    width: 70%;
+  }
+}
+@media screen and (max-width: 1000px){
+  .active-card {
+    margin-right: 15px;
+  }
+  .card {
+    margin-right: 15px;
+  }
+  .city-desc {
+    width: 30%
+  }
+  .d-flex{
+    justify-content: start;
+  }
 }

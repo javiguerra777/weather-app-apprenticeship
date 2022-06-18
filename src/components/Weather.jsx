@@ -1,34 +1,57 @@
 import React from 'react';
 import Proptypes from 'prop-types';
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 import styled from 'styled-components';
+import convertUnix from '../utils/functions';
 
 const Weathercard = styled.div`
-  background-color: gray;
+  background-color: white;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 115px;
 `;
-function Weather({ weather, showInfo }) {
+function Weather({ weather, showInfo, symbol, activeDiv, testid }) {
   return (
-    <div>
-      <h1>Weather data for this week:</h1>
+    <div data-testid={testid}>
       <div className="d-flex">
-        {weather.map((data, index) => {
-          return (
-            <Weathercard
-              className="card"
-              onClick={() => showInfo(index)}
-              role="button"
-              tabIndex={0}
-              key={nanoid()}
-            >
-              <p>
-                Actual Temp: {data.temp} <br />
-                Max temp: {data.max_temp} <br />
-                Min temp: {data.min_temp}
-              </p>
-            </Weathercard>
-          );
-        })}
+        {Object.keys(weather).length !== 0 &&
+          weather.daily.map((data, index) => {
+            return (
+              <Weathercard
+                className={
+                  index === activeDiv ? 'active-card' : 'card'
+                }
+                onClick={() => showInfo(index)}
+                role="button"
+                tabIndex={0}
+                key={Math.floor(Math.random() * 100000000)}
+                data-testid={`weathercard${index}`}
+              >
+                <div
+                  className={index === activeDiv ? 'active' : 'head'}
+                >
+                  <h4>{convertUnix(data.dt, true)}</h4>
+                </div>
+                <h3>
+                  {data.temp.day}
+                  {symbol}
+                </h3>
+                <img
+                  src={`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
+                  alt={data.weather[0].main}
+                />
+                <p>
+                  High: {data.temp.max}
+                  {symbol} <br />
+                  Low: {data.temp.min}
+                  {symbol}
+                </p>
+              </Weathercard>
+            );
+          })}
       </div>
     </div>
   );
@@ -36,9 +59,15 @@ function Weather({ weather, showInfo }) {
 Weather.defaultProps = {
   weather: {},
   showInfo: () => {},
+  symbol: '',
+  activeDiv: -1,
+  testid: '',
 };
 Weather.propTypes = {
   weather: Proptypes.instanceOf(Object),
   showInfo: Proptypes.func,
+  symbol: Proptypes.string,
+  activeDiv: Proptypes.number,
+  testid: Proptypes.string,
 };
 export default Weather;
