@@ -1,5 +1,13 @@
 # Weather Forecaster React Project
 
+This weather forecast project can be ran using npm
+start. This project was made to test my knowledge 
+with redux, proptypes, eslinter, and unit plus
+component testing.
+If a user enters an invalid location, then they 
+will receive a prompt to search for a valid 
+location.
+
 #### [Description](#description) | [Demo](#demo) | [Important Git/GitHub Expectations](#important-gitgithub-expectations) | [Important Notes on APIs](#important-notes-on-apis) | [Getting Started](#getting-started) | [Requirements](#requirements) | [Bonuses](#bonuses)
 
 ---------

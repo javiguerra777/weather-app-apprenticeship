@@ -1,3 +1,4 @@
+// convert to date if false and day of the week if true
 const convertUnix = (unix, yes = false) => {
   const weekday = [
     'Sunday',

@@ -2,6 +2,7 @@ import React from 'react';
 import Proptypes from 'prop-types';
 // import { nanoid } from 'nanoid';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux/es/exports';
 import convertUnix from '../utils/functions';
 
 const Weathercard = styled.div`
@@ -14,8 +15,9 @@ const Weathercard = styled.div`
   width: 115px;
 `;
 function Weather({ weather, showInfo, symbol, activeDiv, testid }) {
+  const error = useSelector((state) => state.error.value);
   return (
-    <div data-testid={testid}>
+    <div data-testid={testid} id={error ? 'hidden' : ''}>
       <div className="d-flex">
         {Object.keys(weather).length !== 0 &&
           weather.daily.map((data, index) => {

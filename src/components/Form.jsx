@@ -9,9 +9,10 @@ import {
 function Form({ handleLocationChange, displayLoc, testid }) {
   const dispatch = useDispatch();
   const newLocation = useSelector((state) => state.location.newValue);
+  const error = useSelector((state) => state.error.value);
   return (
     <div className="header" data-testid={testid}>
-      <div className="city-desc">
+      <div className="city-desc" id={error ? 'hidden' : ''}>
         <h4 data-testid="location">Weather info for {displayLoc}</h4>
       </div>
       <div className="form">
