@@ -26,11 +26,11 @@ function Main() {
   useEffect(() => {
     getLocation(location).then((res) => {
       // throws error if search is invalid
-      if (res.data.length === 0) {
+      if (res.data.length === 0 && !error) {
         dispatch(toggleError());
         return false;
       }
-      if (error) {
+      if (error && res.data.length > 0) {
         dispatch(toggleError());
       }
       // from geocode api first api call
