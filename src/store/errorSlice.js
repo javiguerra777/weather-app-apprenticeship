@@ -6,18 +6,18 @@ export const errorSlice = createSlice({
   name: 'error',
   initialState: {
     value: error,
+    count: 0,
   },
   reducers: {
     // eslint-disable-next-line no-unused-vars
-    toggleError(state, action) {
-      if (!state.value) {
-        state.value = true;
-      } else if (state.value) {
-        state.value = false;
-      }
+    toggleError(state) {
+      state.value = !state.value;
+    },
+    increment(state) {
+      state.count += 1;
     },
   },
 });
 
-export const { toggleError } = errorSlice.actions;
+export const { toggleError, increment } = errorSlice.actions;
 export default errorSlice.reducer;
