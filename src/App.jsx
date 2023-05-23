@@ -8,7 +8,7 @@ import NotFound from './pages/NotFound';
 function App() {
   return (
     <Routes>
-      <Route path="/weather-app-apprenticeship" element={<Layout />}>
+      <Route path="/" element={<Layout />}>
         <Route index element={<Main />} />
         <Route path="*" element={<NotFound />} />
       </Route>
