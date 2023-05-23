@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/weather-app-apprenticeship/static/css/main.c76be1be.css",
-    "main.js": "/weather-app-apprenticeship/static/js/main.e2845e40.js",
+    "main.js": "/weather-app-apprenticeship/static/js/main.196467cc.js",
     "index.html": "/weather-app-apprenticeship/index.html",
     "main.c76be1be.css.map": "/weather-app-apprenticeship/static/css/main.c76be1be.css.map",
-    "main.e2845e40.js.map": "/weather-app-apprenticeship/static/js/main.e2845e40.js.map"
+    "main.196467cc.js.map": "/weather-app-apprenticeship/static/js/main.196467cc.js.map"
   },
   "entrypoints": [
     "static/css/main.c76be1be.css",
-    "static/js/main.e2845e40.js"
+    "static/js/main.196467cc.js"
   ]
 }
